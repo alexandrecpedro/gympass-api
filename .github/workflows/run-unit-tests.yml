@@ -1,0 +1,25 @@
+name: Run Unit Tests
+
+# Each time an user make a git push
+on: [push]
+
+jobs:
+  run-unit-tests:
+    name: Run Unit Tests
+    # Run all tests on a ubuntu machine, with the latest version
+    runs-on: ubuntu-latest
+
+    steps:
+      # Download the code to our device
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          # Github creates cache from dependencies and only download newest
+          cache: 'npm'
+
+      # It avoids question the user, or modify our application (only install libs)
+      - run: npm ci
+
+      - run: npm run test
