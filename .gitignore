@@ -255,7 +255,6 @@ yarn.lock
 # ignore unnecessary folders/files
 .history/
 streams/
-package-lock.json
 ormconfig.json
 
 # Database
